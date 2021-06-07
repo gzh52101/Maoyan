@@ -6,8 +6,8 @@ const colName = 'user'//查询的表名
 const {createToken} = require('../utils/token')
 
 router.post("/", async(req,res)=>{
-    console.log(req.body);
-    let {user_name,password,vcode} = req.body
+    // console.log(req.body);
+    let {tel,password,vcode} = req.body
     console.log(req.session);
 
     if(!req.session.vcode){
@@ -15,7 +15,7 @@ router.post("/", async(req,res)=>{
     }else{
         if(vcode === req.session.vcode){
             password = encode(password)
-            var sql = `select * from ${colName} where user_name = '${user_name}' and password = '${password}'`
+            var sql = `select * from ${colName} where tel = '${tel}' and password = '${password}'`
             let result = await query(sql);
             if(result.length>0){
                 // console.log(result);
@@ -25,7 +25,7 @@ router.post("/", async(req,res)=>{
                         userInfo[i] = result[0][i]
                     }
                 }
-             const authorization =  createToken({user_name:userInfo.user_name})
+             const authorization = createToken({tel:userInfo.tel})
              userInfo.authorization = authorization
                 res.send(returnCode({code:200,data:userInfo,msg:"登录成功"}))
             }else{

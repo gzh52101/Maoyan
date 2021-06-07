@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const {verifyToken} =require("../utils/token");
 const {returnCode} = require("../utils/tools")
 
@@ -9,8 +7,6 @@ module.exports =function VerifyToken(req,res,next){
         if(result){
             next()
         }else{
-            res.send(returnCode({code:401,msg:"token已过期,请重新登陆"}))
+            res.send(returnCode({code:401,msg:"token已过期,请重新登陆获取"}))
         }
-        
-        
 }
