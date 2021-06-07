@@ -20,13 +20,12 @@ router.get("/",async (req,res)=>{
         res.send(returnCode({code:200,data:{total,data:result2}}))
 })
 
-
 //添加用户
 router.post("/",VerifyToken,async (req,res)=>{  
-        let {user_name,password,time=null,role} = req.body
-        if(user_name&&password){
+        let {tel,password,time=null,role} = req.body
+        if(tel&&password){
             password = encode(password)
-            var sql = `INSERT INTO ${colName} VALUES (NULL, '${user_name}', '${password}', NULL, NULL, NULL,${role},'${time}',NULL,NULL);`
+            var sql = `INSERT INTO ${colName} VALUES (NULL,'${password}', NULL, '${tel}',${role},'${time}',NULL,NULL,NULL,0);`
             try {
                 let result =await query(sql);
                 res.send(returnCode({code:200,msg:"添加成功!"}))
@@ -38,11 +37,9 @@ router.post("/",VerifyToken,async (req,res)=>{
         }
 })
 
-
-
 //删除用户接口
 router.delete("/",VerifyToken,async(req,res)=>{
-            const {user_id} = req.body
+            const {user_id} = req.query
             var sql = `DELETE FROM ${colName} WHERE user_id = ${user_id}`
             try {
                 let result =await query(sql);
@@ -67,21 +64,24 @@ router.put("/",VerifyToken,async(req,res)=>{
 
     let {
         nickname=result[0].nickname
-        ,tel=result[0].tel
-        ,email=result[0].email
         ,role = result[0].role
         ,sex = result[0].sex
+        ,brithday=result[0].brithday
+        ,signature=result[0].signature
+        ,money = result[0].money
     } = req.body
 
-    let {time,avatar,user_name,password} = result[0]
+    let {time,avatar,password,tel} = result[0]
     password = password ? encode(password):result[0].password
-    let sql2 = `UPDATE ${colName} SET user_name = '${user_name}',password='${password}',nickname='${nickname}',tel='${tel}',email='${email}',role=${role},time='${time}',avatar ='${avatar}',sex='${sex}' Where user_id =${user_id}`;
+    let sql2 = `UPDATE ${colName} SET password='${password}',nickname='${nickname}',tel='${tel}',avatar ='${avatar}',role='${role}',sex='${sex}',time='${time}',brithday='${brithday}',signature='${signature}',money=${money} Where user_id =${user_id}`;
 
     try {
         let result2 = await query(sql2);
         res.send(returnCode({code:200,msg:"修改成功"}))
         
     } catch (error) {
+        console.log(error);
+        
         res.send(returnCode({code:400,msg:"修改失败"}))
     }
 

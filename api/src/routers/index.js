@@ -9,6 +9,11 @@ const verifyTokenRouter = require("./verifyToken");
 const checkRouter = require("./check");
 const userRouter = require("./user");
 const roleLoginRouter = require("./roleLogin");
+const movieRouter = require("./movie");
+const cityRouter = require("./cities");
+const userSelectRouter = require("./user/select");
+const movieSelectRouter = require("./movie/select");
+const wishRouter = require("./wish");
 
 router.use(session({
     secret: '12345',//通过设置的secret字符串，来计算hash值并放在cookie中，使产生的signedCookie防篡改
@@ -32,5 +37,10 @@ router.use("/verifyToken",verifyTokenRouter);
 router.use("/check",checkRouter);
 router.use("/user",userRouter);
 router.use("/roleLogin",roleLoginRouter);
+router.use("/movie",movieRouter);
+router.use("/city",cityRouter);
+router.use("/userSelect",userSelectRouter);
+router.use("/movieSelect",movieSelectRouter);
+router.use("/wish",wishRouter);
 
 module.exports = router;
