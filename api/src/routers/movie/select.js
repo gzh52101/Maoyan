@@ -5,7 +5,7 @@ const query = require("../../db")
 const colName = 'movie'//查询的表名
 
 router.get("/", async(req,res)=>{
-    const {select} = req.query
+    const {select,user_id} = req.query
 
     var sql = `select * from ${colName} where nm like '%${select}%' `
     let result = await query(sql)
@@ -32,7 +32,21 @@ router.get("/", async(req,res)=>{
                 res.send(returnCode({code:200,data:{total:result.length,data:result},msg:"查询成功"}))
             }else{
                 sql = `select * from ${colName} where id = '${select}' `
-                result = await query(sql)
+                result = await query(sql)   
+
+                var wishsql = `SELECT id FROM wish WHERE  user_id = ${user_id}`
+                const result3 = await query(wishsql);
+                var arr = []
+                result3.forEach(item => {
+                    arr.push(item.id);
+                })
+                result.forEach(item => {
+                    if (arr.includes(item.id)) {
+                        item.iswish = true
+                    } else {
+                        item.iswish = false
+                    }
+                })
 
                 if(result.length>0){
                     result = result.map(item => {
@@ -41,6 +55,9 @@ router.get("/", async(req,res)=>{
                         item.star =item.star.split(",")
                         return item
                     })
+
+
+
                     res.send(returnCode({code:200,data:{total:result.length,data:result},msg:"查询成功"}))
                 }else{
                     res.send(returnCode({code:400,msg:"查无数据"}))

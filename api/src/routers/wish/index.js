@@ -17,7 +17,7 @@ router.get("/", async (req,res)=>{
 })
 
 router.delete("/",VerifyToken,async(req,res)=>{
-    const {user_id,id} = req.body
+    const {user_id,id} = req.query
 
     var sql = `DELETE FROM ${colName} WHERE id = ${id} AND user_id = ${user_id}`
     try {
@@ -29,12 +29,18 @@ router.delete("/",VerifyToken,async(req,res)=>{
     } 
 
 })
-router.post("/", async(req,res)=>{
+router.post("/",VerifyToken, async(req,res)=>{
     const {user_id,id} = req.body
-    // var sql = `INSERT INTO ${colName} VALUES ('${user_id}','${id}')`
-    var sql = `SELECT*FROM ${colName} WHERE id = ${id} AND user_id = ${user_id}`
+    var sql = `INSERT INTO ${colName} VALUES ('${user_id}','${id}')`
 
-    const result = await query(sql);
+    
+    try {
+        const result = await query(sql);
+        res.send(returnCode({code:200,msg:"添加成功！"}))
+    } catch (error) {
+        console.log(error);
+        
+    }
     
 })
 
