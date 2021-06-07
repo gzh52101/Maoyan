@@ -1,4 +1,4 @@
-const allowOrigin = 'http://192.168.43.200:2101,http://localhost:8080'.split(',');
+const allowOrigin = 'http://localhost:2101,http://localhost:8080'.split(',');
 
 module.exports = function(req,res,next){
     const currentOrigin = req.get('Origin');
