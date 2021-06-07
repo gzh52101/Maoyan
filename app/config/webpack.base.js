@@ -1,51 +1,62 @@
-const path = require('path'); 
+const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry:path.join(__dirname,'../src/index.js'),
-    resolve:{
+    entry: path.join(__dirname, '../src/index.js'),
+    resolve: {
         // 路径别名
-        alias:{
-            '@': path.join(__dirname,'../src'),
+        alias: {
+            '@': path.join(__dirname, '../src'),
             '$': '@/components',
         },
 
         // 模块模块扩展名
-        extensions:['.js','.jsx']
+        extensions: ['.js', '.jsx']
     },
-    module:{
-        rules:[
-            {
-                test:/\.jsx?$/,
-                use:[{
-                    loader:'babel-loader',
-                    options:{
-                        plugins:[
-                            ['@babel/plugin-proposal-decorators',{legacy: true}],
-                            ['@babel/plugin-proposal-class-properties',{loose:true}],
+    module: {
+        rules: [{
+                test: /\.jsx?$/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: [
+                            ['@babel/plugin-proposal-decorators', {
+                                legacy: true
+                            }],
+                            ['@babel/plugin-proposal-class-properties', {
+                                loose: true
+                            }],
                         ],
-                        presets:['@babel/preset-react']
+                        presets: ['@babel/preset-react']
                     }
                 }]
             },
             {
-                test:/\.css$/,
-                use:['style-loader','css-loader']
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             },
             {
-                test:/\.s[ca]ss$/,
-                use:['style-loader','css-loader','sass-loader']
+                test: /\.s[ca]ss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/, //
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                }
             }
         ]
     },
-    plugins:[
+    plugins: [
         // new HtmlWebpackPlugin({
-            // template:'./public/index.html',
+        // template:'./public/index.html',
         //     filename:'login.html'
         // }),
+
         new HtmlWebpackPlugin({
-            template:path.join(__dirname,'../public/index.html')
+            template: path.join(__dirname, '../public/index.html')
         }),
     ]
 }
