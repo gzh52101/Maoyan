@@ -85,17 +85,24 @@ function Index(props) {
     ];
 
     const {history,match,location} = props;
-    const [currentMenu, setCurrentMenu] = useState("/"+`${location.pathname}`.split('/')[2]);
+
+    // 当前路由
+    const [currentMenu, setCurrentMenu] = useState();
     
     const clickNav = useCallback(function(title,key){
         history.push(match.path+key);
         setCurrentMenu(key);
-    });
+    },[]);
+    
 
     useEffect(function(){
-        history.listen((location)=>{
-            setCurrentMenu(location.pathname);
+        let current = location.pathname === '/index' ? '/home':"/"+`${location.pathname}`.split('/')[2];
+        setCurrentMenu(current);
+
+        history.listen(location=>{
+            setCurrentMenu("/"+`${location.pathname}`.split('/')[2]);
         });
+
     },[]);
 
     return (

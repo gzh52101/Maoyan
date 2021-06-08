@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import '../scss/home.scss';
-import { Tabs, TabBar } from 'antd-mobile';
+import { Tabs, TabBar, Carousel, WingBlank,WhiteSpace } from 'antd-mobile';
+import RecommendBox from '../components/home/Recommend ';
 
 function Home() {
     let tabs = [
@@ -27,13 +28,16 @@ function Home() {
     const changeTabs = useCallback(function (tab, index) {
         console.log('tab', tab);
         console.log('index', index);
+
     });
 
+    // tabs切换内容
     const renderContent = tab =>
     (
-        <div className="main">
-            <p>Content of {tab.title}</p>
-            <p>Content of {tab.title}</p>
+        <div className="main" >
+            {
+                tab.title === "推荐" ? <RecommendBox/> : null
+            }
             
         </div>
     );
@@ -45,7 +49,21 @@ function Home() {
                     <div className="city">广州<i className="arrow"></i></div>
                     <div className="search-input">
                         <i className="iconfont icon-sousuo"></i>
-                        <span>战狼2</span>
+                        <WingBlank>
+                            <Carousel className="my-carousel"
+                                vertical
+                                dots={false}
+                                dragging={false}
+                                swiping={false}
+                                autoplay
+                                infinite
+                                autoplayInterval={5000}
+                            >
+                                {['战狼2', '你好世界', '阳光姐妹淘'].map(type => (
+                                    <div className="v-item" key={type}>{type}</div>
+                                ))}
+                            </Carousel>
+                        </WingBlank>
                     </div>
                 </div>
 
@@ -54,6 +72,7 @@ function Home() {
                 <Tabs
                     tabs={tabs}
                     initialPage={1}
+                    swipeable={false}
                     tabBarUnderlineStyle={{ width: '15px', marginLeft: '30px', borderColor: 'red' }}
                     renderTabBar={props => <Tabs.DefaultTabBar {...props} page={5} />}
                     onChange={changeTabs}

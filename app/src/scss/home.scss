@@ -38,10 +38,15 @@
                 box-shadow: 0px 0px 8px #ddd;
                 border: 1px solid #eee;
                 color: #000 !important;
-    
+                position: relative;
                 i {
-                    margin-right: 5px;
+                    position: absolute;
                     color: black;
+                    top: 4px;
+                    left: 10px;
+                }
+                .my-carousel{
+                    margin-left: 10px;
                 }
             }
         }
@@ -50,12 +55,69 @@
     .nav-tabs {
         flex: 1;
         overflow: hidden;
+        background-color: rgb(241,241,241);
+        
         .am-tabs-tab-bar-wrap{
             height: 45px;
             color: black;
             padding-bottom: 5px;
             border-bottom: 1px solid #eee;
             box-shadow: 0 1px 5px #eee;
+        }
+        
+        .main{
+            padding: 0 10px;
+
+            .adv-header{
+                display: flex;
+                justify-content: space-around;
+
+                .cards{
+                    width: 20%;
+                    
+                    .cards-header{
+                        text-align: center;
+                        margin-bottom: 10px;
+                        
+                        i{
+                            padding: 3px 5px;
+                            border-radius: 10px;
+                            font-size: 36px;
+                        }
+                    }
+                }
+            }
+            .adv-bottom{
+                margin-top: 10px;
+                display: flex;
+                overflow-x: auto;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+
+                .cards{
+                    width: 100px;
+                    flex-shrink: 0;
+                    border-radius: 5px;
+                    border: 1px solid #eee;
+                    text-align: left;
+                    padding: 10px 18px 5px 10px;
+                    margin: 0 10px;
+                    background-image: url(../../public/img/adv1.png);
+                    
+                    background-repeat: no-repeat;
+                    background-size: 50px;
+                    background-position: 135% 100%;
+
+                    h2{
+                        font-size: 16px;
+                        font-weight: bold;
+                    }
+                    span{
+                        font-size: 12px;
+                    }
+                }
+            }
         }
         
     }
