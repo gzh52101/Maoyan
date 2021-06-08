@@ -128,6 +128,8 @@ function Banner() {
                 </Card.Body>
                 
             </Card>
+
+            <div>热映</div>
         </>
     )
 }
