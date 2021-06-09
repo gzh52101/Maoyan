@@ -1,0 +1,17 @@
+.loginBox{
+    position: fixed;
+    background: #bfa;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 100%;
+    transition: left 0.5s ease;
+    z-index: 999999;
+}
+
+.openLoginBox{
+    left: 0;
+}
+.closeLoginBox{
+    left: 100%;
+}

@@ -93,7 +93,6 @@ function Index(props) {
         history.push(match.path+key);
         setCurrentMenu(key);
     },[]);
-    
 
     useEffect(function(){
         let current = location.pathname === '/index' ? '/home':"/"+`${location.pathname}`.split('/')[2];
@@ -107,6 +106,7 @@ function Index(props) {
 
     return (
         <div className="index-box">
+            
             <div className="content">
                 <Switch>
                     <Route path={match.path + "/home"} component={Home}></Route>

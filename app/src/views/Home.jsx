@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import '../scss/home.scss';
 import { Tabs, TabBar, Carousel, WingBlank,WhiteSpace } from 'antd-mobile';
-import RecommendBox from '../components/home/Recommend ';
+import RecommendBox from './home/Recommend ';
 
 function Home() {
     let tabs = [
@@ -26,9 +26,7 @@ function Home() {
     ];
 
     const changeTabs = useCallback(function (tab, index) {
-        console.log('tab', tab);
-        console.log('index', index);
-
+    
     });
 
     // tabs切换内容
