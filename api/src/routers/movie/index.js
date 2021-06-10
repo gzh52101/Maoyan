@@ -11,7 +11,7 @@ const colName = 'movie' //查询的表名
 
 router.get("/", async (req, res) => {
     const {
-        page = 1, size = 10, isHot = false, isOn = false
+        page = 1, size = 10, isHot = false, isOn = false,cat="",
     } = req.query
     startIndex = (page - 1) * size
     let result2
@@ -28,12 +28,25 @@ router.get("/", async (req, res) => {
         result2 = await query(sql2);
     } else {
         //先查询一共有多少条数据 赋值个total返回前端
-        sql1 = `select * from ${colName}`
-        result = await query(sql1);
-        total = result.length
-
-        sql2 = `select id,img,nm,pubDesc,wish,dir,cat from ${colName} limit ${startIndex},${size}`
-        result2 = await query(sql2);
+ 
+        if(cat){
+            console.log(1);
+            console.log(cat);
+            sql1 = `select * from ${colName} Where cat like '%${cat}%'`
+            result = await query(sql1);
+            
+            total = result.length
+            
+            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn from ${colName} Where cat like '%${cat}%' limit ${startIndex},${size}`
+            result2 = await query(sql2);
+            console.log(result2);
+        }else{
+            sql1 = `select * from ${colName}`
+            result = await query(sql1);
+            total = result.length
+            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn from ${colName} limit ${startIndex},${size}`
+            result2 = await query(sql2);
+        }
     }
 
     res.send(returnCode({
