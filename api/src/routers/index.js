@@ -13,6 +13,7 @@ const movieRouter = require("./movie");
 const cityRouter = require("./cities");
 const userSelectRouter = require("./user/select");
 const movieSelectRouter = require("./movie/select");
+const citySelectRouter = require("./cities/select");
 const wishRouter = require("./wish");
 
 router.use(session({
@@ -41,6 +42,7 @@ router.use("/movie",movieRouter);
 router.use("/city",cityRouter);
 router.use("/userSelect",userSelectRouter);
 router.use("/movieSelect",movieSelectRouter);
+router.use("/citySelect",citySelectRouter);
 router.use("/wish",wishRouter);
 
 module.exports = router;

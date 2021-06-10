@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {returnCode,encode} = require("../../utils/tools");
+const {returnCode,encode,format} = require("../../utils/tools");
 const query = require("../../db")
 const VerifyToken = require("../../middleware/token");
 const colName = 'user'//查询的表名
@@ -22,10 +22,11 @@ router.get("/",async (req,res)=>{
 
 //添加用户
 router.post("/",VerifyToken,async (req,res)=>{  
-        let {tel,password,time=null,role} = req.body
+    let {tel,password,role} = req.body
+    let time=format(new Date())
         if(tel&&password){
             password = encode(password)
-            var sql = `INSERT INTO ${colName} VALUES (NULL,'${password}', NULL, '${tel}',${role},'${time}',NULL,NULL,NULL,0);`
+            var sql = `INSERT INTO ${colName} VALUES (NULL,'${password}', NULL, '${tel}',${role},'${time}',NULL,NULL,NULL,NULL,0);`
             try {
                 let result =await query(sql);
                 res.send(returnCode({code:200,msg:"添加成功!"}))
