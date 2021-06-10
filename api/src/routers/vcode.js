@@ -19,7 +19,7 @@ router.get("/",(req,res)=>{
         let code = svgCaptcha.create(option);
         req.session.vcode = code.text.toLowerCase();
         console.log(req.session);
-        
+          
          res.send(returnCode({code:200,data:code.data}))
 })
 

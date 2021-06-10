@@ -11,7 +11,7 @@ const colName = 'movie' //查询的表名
 
 router.get("/", async (req, res) => {
     const {
-        page = 1, size = 10, isHot = false, isOn = false, user_id = null
+        page = 1, size = 10, isHot = false, isOn = false
     } = req.query
     startIndex = (page - 1) * size
     let result2
@@ -26,24 +26,6 @@ router.get("/", async (req, res) => {
         sql2 = `select id,img,nm,pubDesc,wish,dir,cat from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}' limit ${startIndex},${size}`
         total = result.length
         result2 = await query(sql2);
-
-        if (Boolean(isOn)) {
-            var wishsql = `SELECT id FROM wish WHERE  user_id = ${user_id}`
-            const result3 = await query(wishsql);
-            var arr = []
-            result3.forEach(item => {
-                arr.push(item.id);
-            })
-            var str = arr.join("-");
-            result2.forEach(item => {
-                if (arr.includes(item.id)) {
-                    item.iswish = true
-                } else {
-                    item.iswish = false
-                }
-            })
-        }
-
     } else {
         //先查询一共有多少条数据 赋值个total返回前端
         sql1 = `select * from ${colName}`

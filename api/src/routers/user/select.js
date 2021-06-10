@@ -23,7 +23,9 @@ router.get("/", async(req,res)=>{
             }
         }
     }else{
-        res.send(returnCode({code:400,msg:"查询条件不能为空"}))
+        var sql2 = `select * from ${colName} `
+        let result2 = await query(sql)
+        res.send(returnCode({code:200,data:{total:result2.length,data:result2},msg:"查询成功"}))
     }
 })
 

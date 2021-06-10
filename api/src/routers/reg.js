@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const {encode,returnCode} = require("../utils/tools")
+const {encode,returnCode,format} = require("../utils/tools")
 const query = require("../db")
 const colName = 'user'//查询的表名
 
 router.post("/", async(req,res)=>{
-    let {tel,password,vcode,time} = req.body
-
+    let {tel,password,vcode} = req.body
+     let time=format(new Date())
     if(req.session.vcode){
         if(vcode ==req.session.vcode){
             password = encode(password);      

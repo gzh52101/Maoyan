@@ -13,6 +13,7 @@ router.post("/", async(req,res)=>{
     if(!req.session.vcode){
         res.send(401,returnCode({code:401,msg:"验证码过期"}))
     }else{
+        
         if(vcode === req.session.vcode){
             password = encode(password)
             var sql = `select * from ${colName} where tel = '${tel}' and password = '${password}'`
