@@ -10,8 +10,8 @@ const colName = 'movie' //查询的表名
 
 
 router.get("/", async (req, res) => {
-    const {
-        page = 1, size = 10, isHot = false, isOn = false,cat="",
+    let {
+        page = 1, size = 10, isHot = false, isOn = false, cat = "",
     } = req.query
     startIndex = (page - 1) * size
     let result2
@@ -19,28 +19,36 @@ router.get("/", async (req, res) => {
     let total
     let sql1
     let result
+
     if (Boolean(isHot) || Boolean(isOn)) {
+            isHot =Boolean(isHot)?1:0
+            isOn =Boolean(isOn)?1:0
+
+            
         //先查询一共有多少条数据 赋值个total返回前端
         sql1 = `select * from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}'`
         result = await query(sql1);
         sql2 = `select id,img,nm,pubDesc,wish,dir,cat from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}' limit ${startIndex},${size}`
         total = result.length
         result2 = await query(sql2);
+
+        console.log(result.length);
+        // console.log(result2);
+        
     } else {
         //先查询一共有多少条数据 赋值个total返回前端
- 
-        if(cat){
-            console.log(1);
+        if (cat) {
             console.log(cat);
             sql1 = `select * from ${colName} Where cat like '%${cat}%'`
             result = await query(sql1);
-            
+
             total = result.length
-            
+
             sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn from ${colName} Where cat like '%${cat}%' limit ${startIndex},${size}`
             result2 = await query(sql2);
             console.log(result2);
-        }else{
+        } else {
+            console.log(2);
             sql1 = `select * from ${colName}`
             result = await query(sql1);
             total = result.length
