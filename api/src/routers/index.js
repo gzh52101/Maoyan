@@ -15,6 +15,7 @@ const userSelectRouter = require("./user/select");
 const movieSelectRouter = require("./movie/select");
 const citySelectRouter = require("./cities/select");
 const wishRouter = require("./wish");
+const upAvatarRouter = require("./user/up_avatar");
 
 router.use(session({
     secret: '12345',//通过设置的secret字符串，来计算hash值并放在cookie中，使产生的signedCookie防篡改
@@ -44,5 +45,6 @@ router.use("/userSelect",userSelectRouter);
 router.use("/movieSelect",movieSelectRouter);
 router.use("/citySelect",citySelectRouter);
 router.use("/wish",wishRouter);
+router.use("/upAvatar",upAvatarRouter);
 
 module.exports = router;

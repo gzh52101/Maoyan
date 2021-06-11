@@ -154,7 +154,6 @@ router.post("/", [VerifyToken, uploadMiddleware.array('photos')], async (req, re
         star
     } = req.body
     let imgs = req.files.map(item => item.filename)
-    console.log(imgs);
     const img = imgs[0]
     var photos = imgs.filter((item, index) => {
         return index != 0
