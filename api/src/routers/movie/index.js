@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const {
-    returnCode
+    returnCode,
+    random_scalecolor
 } = require("../../utils/tools");
 const query = require("../../db")
 const VerifyToken = require("../../middleware/token");
 const colName = 'movie' //查询的表名
-
+const {
+    uploadMiddleware
+} = require('../../utils/upload')
 
 
 router.get("/", async (req, res) => {
@@ -21,10 +24,10 @@ router.get("/", async (req, res) => {
     let result
 
     if (Boolean(isHot) || Boolean(isOn)) {
-            isHot =Boolean(isHot)?1:0
-            isOn =Boolean(isOn)?1:0
+        isHot = Boolean(isHot) ? 1 : 0
+        isOn = Boolean(isOn) ? 1 : 0
 
-            
+
         //先查询一共有多少条数据 赋值个total返回前端
         sql1 = `select * from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}'`
         result = await query(sql1);
@@ -34,7 +37,7 @@ router.get("/", async (req, res) => {
 
         console.log(result.length);
         // console.log(result2);
-        
+
     } else {
         //先查询一共有多少条数据 赋值个total返回前端
         if (cat) {
@@ -136,33 +139,33 @@ router.put("/", VerifyToken, async (req, res) => {
 
 
 
-router.post("/", VerifyToken, async (req, res) => {
+router.post("/", [VerifyToken, uploadMiddleware.array('photos')], async (req, res) => {
     let {
-        nm,
-        enm,
-        star,
         cat,
         dir,
-        pubDesc,
-        dur,
-        scoreLabel = "猫眼综合评分",
-        sc,
         dra,
-        img,
-        wish = 0,
-        watched = 0,
-        photos,
-        backgroundColor,
+        dur,
+        enm,
         isHot,
         isOn,
-        price
-    } = req.body;
-
-    // photos = photos.substring(0,100);
-    var sql = `INSERT INTO ${colName} VALUES (NULL, "${nm}","${enm}","${cat}","${star}", "${dir}","${pubDesc}","${dur}","${scoreLabel}","${sc}","${dra}","${img}","${wish}","${watched}","${photos.replace(/\"/g,"'")}","${backgroundColor}","${isHot}","${isOn}","${price}")`
-
+        money,
+        nm,
+        pubDesc,
+        star
+    } = req.body
+    let imgs = req.files.map(item => item.filename)
+    const img = imgs[0]
+    var photos = imgs.filter((item, index) => {
+        return index != 0
+    })
+    photos = photos.join(",")
+    var sc = (Math.random() * ((10 - 4) + 1) + 4).toFixed(1)
+    var wish = parseInt(Math.random() * ((30 - 10) + 1) + 10)
+    var watched = parseInt(Math.random() * ((60000 - 10000) + 1) + 10000)
+    var backgroundColor  = random_scalecolor();
+    var sql = `INSERT INTO ${colName} VALUES (NULL,'${nm}','${enm}','${cat}','${star}','${dir}','${pubDesc}','${dur}','猫眼综合评分','${sc}','${dra}','${img}','${wish}','${watched}','${photos}','${backgroundColor}','${isHot}','${isOn}','${money}');`
     try {
-        const result = await query(sql)
+        let result = await query(sql);
         res.send(returnCode({
             code: 200,
             msg: "添加成功!"
@@ -171,5 +174,8 @@ router.post("/", VerifyToken, async (req, res) => {
         console.log(error);
     }
 })
+
+
+
 
 module.exports = router;
