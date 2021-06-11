@@ -7,7 +7,7 @@
     left: 100%;
     // left: 0;
     transition: left 0.8s ease;
-    z-index: 999999;
+    z-index: 999;
     padding: 20px 15px;
     display: flex;
     flex-direction: column;
@@ -36,8 +36,12 @@
         .am-list-body::after{
             height: 0px;
         }
+        .am-list-item:not(:last-child) .am-list-line {
+            border: none;
+        }
         .am-list-body{
             position: static;
+            border: none;
             
             input{
                 padding: 12px 0;

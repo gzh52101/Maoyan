@@ -1,18 +1,21 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { openBox } from '../store/actions/loginBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { openBox,login } from '../store/actions/login';
 import '../scss/login.scss';
-import { Icon, List, InputItem, Button } from 'antd-mobile';
+import { Icon, List, InputItem, Button, Toast } from 'antd-mobile';
 import request from '../utils/request';
 
 
 function Login() {
 
     const dispatch = useDispatch();
-    const { loginBoxAnimate } = useSelector(state => state.loginBox);
+    const { loginBoxAnimate } = useSelector(state => state.login);
 
     const closeBtn = useCallback(() => {
         dispatch(openBox(false));
+        cleanTel();
+        cleanPwd();
+        setVCode('');
     });
 
     const [loginBtn, setLoginBtn] = useState();
@@ -25,7 +28,7 @@ function Login() {
     const [vcodeBox, setVCodeBox] = useState('');
 
     useEffect(() => {
-        if (tel.length > 12 && password.length > 7 && vcode.length > 3) {
+        if (tel.length > 12 && password.length > 0 && vcode.length > 3) {
             setLoginBtn(true);
         } else {
             setLoginBtn(false);
@@ -35,8 +38,6 @@ function Login() {
     useEffect(async () => {
         getVCode();
     }, []);
-
-    
 
     const getVCode = useCallback(async () => {
         const imgCode = await request('/vcode');
@@ -55,10 +56,52 @@ function Login() {
         setVCode(value);
     }, []);
 
-    const onFinish = useCallback(() => {
-        console.log(tel);
-        console.log(password);
-        console.log(vcode);
+   
+    const checkLogin = useCallback(async (type,{telphone,password,vcode}) => {
+        const data = await request.post(`/${type}`, {
+            tel: telphone,
+            password: password,
+            vcode: vcode
+        });
+        if (data.code === 200) {
+            Toast.success('登录成功', 2);
+            cleanPwd();
+            cleanTel();
+            setVCode('');
+            getVCode();
+            closeBtn();
+            dispatch(login(data.data));
+        } else if (data.code === 400) {
+            Toast.offline('账号或密码错误', 2);
+            getVCode();
+        } else {
+            Toast.offline('验证码错误或过期', 2);
+            setVCode('');
+            getVCode();
+        }
+
+    }, []);
+
+    const onFinish = useCallback(async () => {
+
+        let numberReg = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+        let telphone = tel.split(' ').join('');
+        let passwordReg = /([a-zA-Z0-9]|[._@]){8,32}$/;
+
+        if (numberReg.test(telphone)) {
+            if (passwordReg.test(password)) {
+                const data = await request.get('/check', { tel: telphone });
+                if (data.code === 200) {
+                    checkLogin('reg',{telphone,password,vcode});
+                } else {
+                    checkLogin('login',{telphone,password,vcode});
+                }
+            } else {
+                Toast.offline('密码长度为8-32位字母，数字或@_.特殊字符', 3);
+            }
+        } else {
+            Toast.offline('请输入正确的手机号', 3);
+        }
     });
 
     const goCodeLogin = useCallback(() => {
@@ -138,7 +181,7 @@ function Login() {
                                         value={vcode}
                                     ></InputItem>
                                 </List>
-                                <div dangerouslySetInnerHTML={{ __html:vcodeBox}} onClick={getVCode}></div>
+                                <div dangerouslySetInnerHTML={{ __html: vcodeBox }} onClick={getVCode}></div>
                             </div>
 
                             <p style={{ fontSize: 12, color: '#999' }}>未注册的手机号验证后自动创建猫眼账户</p>
@@ -165,7 +208,7 @@ function Login() {
                                     tel.length > 0 ? <Icon type='cross' style={{ position: 'absolute', top: '25%', right: '0px', zIndex: 99, color: '#ccc' }} /> : null
                                 }
                             </List>
-                            <p style={{ fontSize: 12, color: '#999',marginTop:10 }}>未注册的手机号验证后自动创建猫眼账户</p>
+                            <p style={{ fontSize: 12, color: '#999', marginTop: 10 }}>未注册的手机号验证后自动创建猫眼账户</p>
                             <Button type="warning" disabled style={{ margin: '25px 0', height: 40, lineHeight: '40px' }}>获取短信验证码</Button>
                             <p style={{ display: 'flex', justifyContent: 'space-between ' }}>
                                 <span onClick={goCodeLogin}>密码登录</span>

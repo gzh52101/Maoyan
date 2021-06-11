@@ -94,19 +94,19 @@ function Recommend() {
                     </div>
 
                     <div className="adv-bottom">
-                        <div className="cards" style={{ background: 'url(./img/adv1.png) no-repeat 165% 100%', backgroundSize: 46 }}>
+                        <div className="cards" style={{ background: 'url(./img/adv1.png) no-repeat 100% 100%', backgroundSize: 46 }}>
                             <h2>砍价专区</h2>
                             <span>0元观影</span>
                         </div>
-                        <div className="cards" style={{ background: 'url(./img/adv2.jpg) no-repeat 105% 100%', backgroundSize: 22 }}>
+                        <div className="cards" style={{ background: 'url(./img/adv2.jpg) no-repeat 100% 100%', backgroundSize: 22 }}>
                             <h2>在线观影</h2>
                             <span>限时抢券</span>
                         </div>
-                        <div className="cards" style={{ background: 'url(./img/adv3.jpg) no-repeat 105% 100%', backgroundSize: 22 }}>
+                        <div className="cards" style={{ background: 'url(./img/adv3.jpg) no-repeat 100% 100%', backgroundSize: 22 }}>
                             <h2>孟京辉</h2>
                             <span>经典戏剧</span>
                         </div>
-                        <div className="cards" style={{ background: 'url(./img/adv1.png) no-repeat 165% 100%', backgroundSize: 46 }}>
+                        <div className="cards" style={{ background: 'url(./img/adv1.png) no-repeat 100% 100%', backgroundSize: 46 }}>
                             <h2>周边商场</h2>
                             <span>3C周边</span>
                         </div>
