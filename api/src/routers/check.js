@@ -14,7 +14,6 @@ router.get("/", async(req,res)=>{
       res.send(returnCode({code:400,msg:'手机号已被注册'}))
     }else{
         res.send(returnCode({code:200,msg:'手机号可用'}))
-
     }
 
 })

@@ -21,6 +21,14 @@ exports.encode = function(password){
     password = hash.digest("hex");
     return password
 }
+exports.random_scalecolor =function () {
+    var str = "0123456789abcdef"
+    var color = "#"
+    for (var i = 0; i < 6; i++) {
+        color += str[parseInt(Math.random() * ((15 - 0) + 1) + 0)]
+    }
+    return color;
+}
 
 exports.format = function(d, f = "-"){
     var years = d.getFullYear();
