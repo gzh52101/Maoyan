@@ -51,7 +51,7 @@ function Recommend() {
         getData();
     }, []);
 
-    // 获取热映影片
+    // 获取影片
     const getData = useCallback(async () => {
         const { data } = await request.get('/movie', { page:1, size:20, isHot: true });
         sethotMovieData(data.data);

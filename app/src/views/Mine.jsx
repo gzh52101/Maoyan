@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-function Mine(){
-    return(
-        <div>
-            Mine
+import { connect,useSelector,useDispatch } from 'react-redux';
+import {openBox} from '../store/actions/loginBox';
+
+function Mine() {
+
+    const dispatch = useDispatch();
+    const {loginBoxAnimate} = useSelector(state => state.loginBox);
+
+    const openLoginBox = useCallback(() => {
+        dispatch(openBox(true));
+    })
+
+    return (
+        <div className="mine-box" >
+            <button onClick={openLoginBox} style={{ width: 100, height: 50 }}>登录</button>
         </div>
     )
 }
