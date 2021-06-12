@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
         //先查询一共有多少条数据 赋值个total返回前端
         sql1 = `select * from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}'`
         result = await query(sql1);
-        sql2 = `select id,img,nm,pubDesc,wish,dir,cat from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}' limit ${startIndex},${size}`
+        sql2 = `select id,img,nm,pubDesc,wish,dir,cat,star,sc from ${colName} WHERE isHot='${isHot}' AND isOn='${isOn}' limit ${startIndex},${size}`
         total = result.length
         result2 = await query(sql2);
 
@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
 
             total = result.length
 
-            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn from ${colName} Where cat like '%${cat}%' limit ${startIndex},${size}`
+            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn,star,sc from ${colName} Where cat like '%${cat}%' limit ${startIndex},${size}`
             result2 = await query(sql2);
             console.log(result2);
         } else {
@@ -55,7 +55,7 @@ router.get("/", async (req, res) => {
             sql1 = `select * from ${colName}`
             result = await query(sql1);
             total = result.length
-            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn from ${colName} limit ${startIndex},${size}`
+            sql2 = `select id,img,nm,pubDesc,wish,dir,cat,isHot,isOn,star,sc from ${colName} limit ${startIndex},${size}`
             result2 = await query(sql2);
         }
     }
