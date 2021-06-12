@@ -1,29 +1,29 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import '../scss/home.scss';
-import { Tabs, TabBar, Carousel, WingBlank,WhiteSpace } from 'antd-mobile';
+import { Tabs, Carousel, WingBlank } from 'antd-mobile';
 import RecommendBox from './home/Recommend ';
 
+let tabs = [
+    { title: '放映厅' },
+    { title: '推荐' },
+    { title: '热映' },
+    { title: '预告' },
+    { title: '说电影' },
+    { title: '佳片' },
+    { title: '热播剧' },
+    { title: '爱动漫' },
+    { title: '精彩片段' },
+    { title: '盘点' },
+    { title: '欢喜首映' },
+    { title: '猫眼看戏' },
+    { title: '娱乐圈' },
+    { title: '悬疑' },
+    { title: '科幻' },
+    { title: '爱情' },
+    { title: '奇幻' },
+    { title: '资讯' },
+];
 function Home() {
-    let tabs = [
-        { title: '放映厅' },
-        { title: '推荐' },
-        { title: '热映' },
-        { title: '预告' },
-        { title: '说电影' },
-        { title: '佳片' },
-        { title: '热播剧' },
-        { title: '爱动漫' },
-        { title: '精彩片段' },
-        { title: '盘点' },
-        { title: '欢喜首映' },
-        { title: '猫眼看戏' },
-        { title: '娱乐圈' },
-        { title: '悬疑' },
-        { title: '科幻' },
-        { title: '爱情' },
-        { title: '奇幻' },
-        { title: '资讯' },
-    ];
 
     const changeTabs = useCallback(function (tab, index) {
     

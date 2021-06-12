@@ -1,0 +1,79 @@
+// 电影卡片
+.movie-cards {
+    background: #fff;
+    .cards {
+        display: flex;
+        padding: 0 20px;
+
+        .cards-img {
+            width: 20%;
+            min-height: 100px;
+            position: relative;
+            padding: 15px 5px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+            }
+
+            .myIcon-bofang {
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                border-radius: 50%;
+                background: rgba($color: #fff, $alpha: 0.6);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+
+                .icon-icon_play {
+                    color: #666;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .cards-content {
+            width: 60%;
+            border-bottom: 1px solid #eee;
+            padding: 15px 5px;
+
+            .title {
+                font-size: 18px;
+                color: #000;
+                margin-bottom: 5px;
+            }
+
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                margin-bottom: 3px;
+            }
+
+        }
+
+        .cards-btn {
+            width: 20%;
+            border-bottom: 1px solid #eee;
+            padding: 15px 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .btn {
+                width: 50px;
+                height: 28px;
+                line-height: 28px;
+                border-radius: 14px;
+                text-align: center;
+                color: #fff;
+            }
+        }
+    }
+}
