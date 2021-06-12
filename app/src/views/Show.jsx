@@ -3,7 +3,7 @@ import React from 'react';
 function Show(){
     return(
         <div>
-            Show
+            show
         </div>
     )
 }
