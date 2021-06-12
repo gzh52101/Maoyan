@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { PullToRefresh, Button } from 'antd-mobile';
 import ReactDOM from 'react-dom';
-import '../scss/Video.scss'
+import '../scss/video.scss'
 function Video() {
     const [videoPlay, setVideoPlay] = useState(false);
     const video = useRef(null)
@@ -19,7 +19,9 @@ function Video() {
                                 setVideoPlay(false)
                             }
                         }}></video>
-                    {  videoPlay?<div></div>:<button className=" iconfont icon-icon_play"onClick={() => {
+                    {  videoPlay?<div></div>:
+                    <div className="video_btn">
+                        <button className=" iconfont icon-icon_play"onClick={() => {
                             if (!videoPlay) {
                                 video.current.play();
                                 setVideoPlay(true)
@@ -27,7 +29,8 @@ function Video() {
                                 video.current.pause();
                                 setVideoPlay(false)
                             }
-                        }}/>}
+                        }}/>
+                        </div>}
                         <div className="tips">
                             <i className='iconfont icon-gengduo'></i>
                             <ul>
