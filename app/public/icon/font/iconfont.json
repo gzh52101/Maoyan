@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1026174",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "3262862",
+      "name": "心 爱心",
+      "font_class": "xin",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "5187412",
+      "name": "扇子摆件",
+      "font_class": "shanzibaijian",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "5202624",
+      "name": "鸭子",
+      "font_class": "yazi",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "11372758",
+      "name": "点赞",
+      "font_class": "dianzan",
+      "unicode": "e8c3",
+      "unicode_decimal": 59587
+    },
+    {
+      "icon_id": "13648399",
+      "name": "麦克风",
+      "font_class": "maikefeng",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "16589942",
+      "name": "评论-",
+      "font_class": "53pinglun-",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "18866952",
+      "name": "小丑",
+      "font_class": "xiaochou",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "19494211",
+      "name": "分 享",
+      "font_class": "fenxiang",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "20360904",
+      "name": "图 片",
+      "font_class": "tupian",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
       "icon_id": "705695",
       "name": "眼睛",
       "font_class": "yanjing",
