@@ -1,0 +1,25 @@
+*{
+     touch-action: none !important;  
+}
+
+.am-pull-to-refresh-content-wrapper{
+    height: 100%;
+}
+.am-pull-to-refresh-content{
+    height: 100%;
+    div:nth-child(2){
+        height: 100%;
+    }
+}
+.content{
+    height: 100% !important;
+    position: relative;
+    background-color: black;
+    position: relative;
+    video{
+        position: relative;
+        object-fit:fill
+    }
+    
+
+}
