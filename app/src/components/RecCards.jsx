@@ -1,13 +1,14 @@
-import React,{useState,useEffect} from 'react';
-import { Carousel, WingBlank, WhiteSpace,Card,Grid } from 'antd-mobile';
+import React from 'react';
+import {Card } from 'antd-mobile';
+import '../scss/RecCards.scss';
 
-function RecCards({Len,cardsData,title,time=false,haveBtn=false,btnText,btnColor,numCount=false}) {
+function RecCards({Len,cardsData,title,time=false,haveBtn=false,btnText,btnColor,numCount=false,extra=true}) {
     
     return(
         <Card style={{paddingTop:8,marginTop:10}}>
             <Card.Header
-                title={<h2 style={{fontSize:18}}>{title}</h2>}
-                extra={<span>全部{numCount? Len+'部':null}&nbsp;&gt;</span>}
+                title={<h2 style={{fontSize:18,fontWeight:'normal'}}>{title}</h2>}
+                extra={extra?<span>全部{numCount? Len+'部':null}&nbsp;&gt;</span>:null}
             />
                 <Card.Body style={{padding: '0px'}}>
                     <div className="hot-movie">

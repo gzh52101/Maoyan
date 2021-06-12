@@ -121,73 +121,7 @@
                     }
                 }
             }
-            .hot-movie{
-                display: flex;
-                overflow-x: auto;
-                overflow-y: hidden;
-                margin-left: 10px;
-                &::-webkit-scrollbar{
-                    display: none;
-                }
-
-                .cards{
-                    width: 28%;
-                    flex-shrink: 0;
-                    margin-right: 5px;
-                    padding-bottom: 10px;
-                    
-                    .card-img{
-                        position: relative;
-                        overflow: hidden;
-                        height: 70%;
-                        border-radius: 5px;
-
-                        p{
-                            width: 100%;
-                            padding: 5px 10px;
-                            color: #fff;
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            // background: -webkit-linear-gradient(top, rgba(255,255,255,0.4) 10%, rgba(255,255,255,0.2)50%, rgba(255,255,255,0) 50%);
-                            background-image: linear-gradient(to bottom, rgba(150,150,150,0.1), rgba(33,33,33,.8));
-
-                            span{
-                                margin-right: 5px;
-                            }
-                        }
-                        
-                        img{
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                    
-                    
-                    .title{
-                        font-weight: normal;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        margin-top: 8px;
-                    }
-                    .time{
-                        font-weight: normal;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        margin-top: 5px;
-                    }
-                    button{
-                        width: 50px;
-                        height: 25px;
-                        border: none;
-                        border-radius: 12px;
-                        color: #fff;
-                        margin-top: 5px;
-                    }
-                }
-            }
+            
         }
         
     }
