@@ -6,7 +6,6 @@ const colName = 'user'//查询的表名
 const {createToken} = require('../utils/token')
 
 router.post("/", async(req,res)=>{
-    // console.log(req.body);
     let {tel,password,vcode} = req.body
     console.log(req.session);
 
