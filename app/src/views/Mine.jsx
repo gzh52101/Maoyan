@@ -188,7 +188,12 @@ function Mine() {
 
                     <div className="user-avator">
                         <div className="avator">
-                            <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:'./img/headPortrait.jpg'} alt="" />
+                            {
+                                userInfo ?
+                                <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:'./img/headPortrait.jpg'} alt="" />
+                                :
+                                <img src="./img/headPortrait.jpg" alt="" />
+                            }
                         </div>
                         {
                             userInfo ?

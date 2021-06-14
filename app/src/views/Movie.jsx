@@ -1,156 +1,54 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import '../scss/movie.scss';
 import { Tabs } from 'antd-mobile';
-import Banner from '../components/Banner';
-import request from '../utils/request';
-import MovieCard from '../components/MovieCard';
-import RecCards from '../components/RecCards';
+import HotMovie from './movie/HotMovie';
+import OnMovie from './movie/OnMovie';
 
-// 轮播图数据
-const bannerData = {
-    data: ['banner1.png', 'banner2.png', 'banner3.png', 'banner4.png', 'banner5.png', 'banner6.png', 'banner7.png'],
-}
 
-function Movie() {
-    const [hotMovieData, sethotMovieData] = useState([]);
-    const [onMovieData, setonMovieData] = useState([]);
+function Movie(props) {
+    
 
-    const [movieContentBox, setmovieContentBox] = useState();
-
-    // 初始化调用
-    useEffect(function () {
-        getData('热映');
-        setmovieContentBox('热映');
-    }, []);
+    const { history, match } = props;
 
     let tabs = [
         {
             title: '热映',
-            content: <div className="movie-main" key=''>
-                <div className="hotMovie">
-                    <Banner bannerData={bannerData.data}></Banner>
-                    <div className="movie-data">
-                        <div className="movie-data-left">
-                            <i className='iconfont icon-shuju' style={{ marginRight: 5 }}></i>
-                            实时票房
-                        </div>
-                        <div className="movie-data-right">
-                            今日大盘
-                            <span style={{ color: 'red', margin: 5, fontSize: 16 }}>14739.2万</span>
-                            &gt;
-                        </div>
-                    </div>
-
-                    <MovieCard
-                        cardsData={hotMovieData}
-                        btnCol={'rgb(235, 50, 62)'}
-                        btnTxt={'购票'}
-                        score={true}
-                        time={true}
-                    >
-                    </MovieCard>
-                </div>
-            </div>,
+            path: `${match.path}/hot`,
         },
         {
             title: '影院',
-            content: <div key='' style={{ textAlign: 'center' }}>影院列表</div>,
+            path: `${match.path}/cinema`,
         },
         {
-            title: '待影',
-            content: <div className="movie-main" key=''>
-            <div className="onMovie">
-
-                <div className='preview'>
-                    <div className="preview-header">
-                        预告片推荐
-                    </div>
-                    <div className="preview-cards">
-                        <div className="cards">
-                            <img src="./img/banner1.png" alt="" />
-                            <div className="title">
-                                <p>新大头儿子和小头爸爸</p>
-                                <p className="subTitle">《新大头儿子和小头爸爸》</p>
-                            </div>
-                            <div className="myIcon-bofang">
-                                <i className='iconfont icon-icon_play'></i>
-                            </div>
-                        </div>
-                        <div className="cards">
-                            <img src="./img/banner2.png" alt="" />
-                            <div className="title">
-                                <p>无人生还：逃跑计划</p>
-                                <p className="subTitle">《无人生还》</p>
-                            </div>
-                            <div className="myIcon-bofang">
-                                <i className='iconfont icon-icon_play'></i>
-                            </div>
-                        </div>
-                        <div className="cards">
-                            <img src="./img/banner3.png" alt="" />
-                            <div className="title">
-                                <p>革命者</p>
-                                <p className="subTitle">电影《革命者》</p>
-                            </div>
-                            <div className="myIcon-bofang">
-                                <i className='iconfont icon-icon_play'></i>
-                            </div>
-                        </div>
-                        <div className="cards">
-                            <img src="./img/banner4.png" alt="" />
-                            <div className="title">
-                                <p>两只狗的生活意见</p>
-                                <p className="subTitle">戏剧《两只狗的生活意见》</p>
-                            </div>
-                            <div className="myIcon-bofang">
-                                <i className='iconfont icon-icon_play'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <RecCards cardsData={onMovieData} title={'待映推荐'} numCount={true} time={true} haveBtn={true} btnText={'想看'} btnColor={'rgb(254,183,79)'} extra={false}></RecCards>
-
-                <div style={{marginTop:10}}>
-                    <MovieCard
-                        key=''
-                        cardsData={onMovieData}
-                        btnCol={'rgb(254,183,79)'}
-                        btnTxt={'想看'}
-                        wish={true}
-                        type={true}
-                    >
-                    </MovieCard>
-
-                </div>
-            </div>
-        </div>,
+            title: '待映',
+            path: `${match.path}/on`,
         },
     ];
 
+    
+    const [currentTab, setCurrentTab] = useState();
 
-    // 获取影片
-    const getData = useCallback(async (title) => {
-        if (title === '热映') {
-            const { data } = await request.get('/movie', { page: 1, size: 10, isHot: true });
-            sethotMovieData(data.data);
-        }
-        if (title === '待影') {
-            const { data: data2 } = await request.get('/movie', { page: 1, size: 10, isOn: true });
-            setonMovieData(data2.data);
-        }
+    useEffect(() => {
+        history.listen((location) => {
+            tabs.forEach((item, index) => {
+                if (location.pathname === item.path) {
+                    setCurrentTab(index);
+                }
+            });
+        });
+    }, [])
 
-    }, []);
+    useEffect(() => {
+        return () => {
+            setCurrentTab(null)
+        }
+    },[])
 
     const changeTabs = useCallback(function (tab, index) {
-        tabs.forEach(item => {
-            if (item.title === tab.title) {
-                getData(tab.title);
-                setmovieContentBox(tab.title);
-            }
-        });
+        history.push(tab.path);
+        setCurrentTab(index);
     });
-
 
     return (
         <div className='movie-box'>
@@ -159,7 +57,7 @@ function Movie() {
 
                 <Tabs
                     tabs={tabs}
-                    initialPage={0}
+                    page={currentTab}
                     swipeable={false}
                     tabBarUnderlineStyle={{ width: '20px', marginLeft: '30px', borderColor: '#fff', bottom: 2 }}
                     renderTabBar={props => <Tabs.DefaultTabBar {...props} page={3} />}
@@ -171,16 +69,13 @@ function Movie() {
 
             </div>
 
-
-            {
-                tabs.map(item => {
-                    if (item.title === movieContentBox) {
-                        return item.content
-                    }
-                })
-            }
-
-            
+            <Switch>
+                <Route path={match.path + '/hot'} component={HotMovie}></Route>
+                <Route path={match.path + '/on'} component={OnMovie}></Route>
+                <Route path={match.path + '/cinema'} component={() => (<div>影院</div>)}></Route>
+                <Redirect from={match.path + '/'} to={match.path + "/hot"} exact />
+             
+            </Switch>
 
         </div>
     )

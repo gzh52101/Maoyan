@@ -2,7 +2,7 @@ import React,{useState, useCallback,useEffect} from 'react';
 import '../scss/index.scss';
 import {Switch,Route,Redirect} from 'react-router-dom';
 
-import { Tabs,TabBar } from 'antd-mobile';
+import { TabBar } from 'antd-mobile';
 import Home from './Home';
 import Movie from './Movie';
 import Video from './Video';
@@ -99,6 +99,12 @@ function Index(props) {
         });
 
     },[]);
+
+    useEffect(() => {
+        return () => {
+            setCurrentMenu(null)
+        }
+    },[])
 
     return (
         <div className="index-box">

@@ -23,7 +23,7 @@ let tabs = [
     { title: '奇幻' },
     { title: '资讯' },
 ];
-function Home() {
+function Home(props) {
 
     const changeTabs = useCallback(function (tab, index) {
     
@@ -34,7 +34,7 @@ function Home() {
     (
         <div className="main" >
             {
-                tab.title === "推荐" ? <RecommendBox/> : null
+                tab.title === "推荐" ? <RecommendBox {...props}/> : null
             }
             
         </div>

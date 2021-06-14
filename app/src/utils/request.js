@@ -1,4 +1,5 @@
-export const baseUrl = process.env.NODE_ENV==='production' ? 'http://159.75.52.223:5555' : 'http://159.75.52.223:5555';
+// export const baseUrl = process.env.NODE_ENV==='production' ? 'http://159.75.52.223:5555' : 'http://159.75.52.223:5555';
+export const baseUrl = process.env.NODE_ENV==='production' ? 'http://192.168.1.104:5555' : 'http://192.168.1.104:5555';
 export const apiUrl = baseUrl + '/api'
 function request(url, data = {}, config = {}) {
     url = url.startsWith('http') ? url : apiUrl + url;

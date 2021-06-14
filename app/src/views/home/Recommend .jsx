@@ -37,7 +37,7 @@ const bannerData = {
 }
 
 
-function Recommend() {
+function Recommend(props) {
 
     const [hotMovieData, sethotMovieData] = useState([]);
     const [hotLen, sethotLen] = useState();
@@ -118,11 +118,11 @@ function Recommend() {
                 </Card.Body>
             </Card>
 
-            <RecCards Len={hotLen} cardsData={hotMovieData} title={'正在热映'} numCount={true} haveBtn={true} btnText={'购票'} btnColor={'rgb(240,61,56)'}></RecCards>
+            <RecCards Len={hotLen} cardsData={hotMovieData} title={'正在热映'} numCount={true} haveBtn={true} btnText={'购票'} btnColor={'rgb(240,61,56)'} props={props}></RecCards>
 
-            <RecCards Len={onLen} cardsData={onMovieData} title={'待映推荐'} numCount={true} time={true} haveBtn={true} btnText={'预售'} btnColor={'rgb(53,167,254)'}></RecCards>
+            <RecCards Len={onLen} cardsData={onMovieData} title={'待映推荐'} numCount={true} time={true} haveBtn={true} btnText={'预售'} btnColor={'rgb(53,167,254)'} props={props}></RecCards>
 
-            <RecCards Len={showLen} cardsData={showData} title={'精彩演出'}></RecCards>
+            <RecCards Len={showLen} cardsData={showData} title={'精彩演出'} props={props}></RecCards>
 
         </>
     )
