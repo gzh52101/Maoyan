@@ -6,6 +6,6 @@ module.exports = {
     output:{
         path:path.join(__dirname,'../dist'),
         filename:'js/[name].[hash:5].js',
-        // publicPath:'/mange',
+        publicPath:'/',
     },
 }

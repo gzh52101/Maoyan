@@ -34,7 +34,7 @@ function Video() {
                         <div className="tips">
                             <i className='iconfont icon-gengduo'></i>
                             <ul>
-                                <li> <img src="./img/adv2.jpg" alt="" /> <span>+</span></li>
+                                <li> <img src={require("../../public/img/adv2.jpg").default} alt="" /> <span>+</span></li>
                                 <li> <i className="iconfont icon-dianzan"></i> <p>52</p> </li>
                                 <li><i className="iconfont icon-53pinglun-"></i><p>评论</p> </li>
                                 <li><i className="iconfont icon-fenxiang"></i><p>分享</p> </li>

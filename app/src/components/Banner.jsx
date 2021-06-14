@@ -30,8 +30,8 @@ function Banner({bannerData}) {
                                     style={{ display: 'inline-block', width: '100%' }}
                                 >
                                     <img
-                                        src={`./img/${val}`}
-                                        style={{ width: '100%', verticalAlign: 'top', borderRadius: 10 }}
+                                src={require(`../../public/img/${val}`).default}
+                                        style={{ width: '100%', verticalAlign: 'top', borderRadius: 10}}
                                         alt={`轮播图${val}`}
                                         onLoad={() => {
                                             window.dispatchEvent(new Event('resize'));

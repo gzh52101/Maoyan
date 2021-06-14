@@ -11,7 +11,6 @@ const bannerData = {
 }
 
 function Movie(props) {
-    
     const [hotMovieData, sethotMovieData] = useState([]);
 
     // 初始化调用

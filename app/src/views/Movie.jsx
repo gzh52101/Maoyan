@@ -8,9 +8,8 @@ import OnMovie from './movie/OnMovie';
 
 function Movie(props) {
     
-
     const { history, match } = props;
-
+    
     let tabs = [
         {
             title: '热映',
