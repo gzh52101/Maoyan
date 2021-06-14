@@ -1,0 +1,84 @@
+.loginBox{
+    position: fixed;
+    background: #fff;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 100%;
+    // left: 0;
+    transition: left 0.8s ease;
+    z-index: 999;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .login-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: red;
+        padding-bottom: 20px;
+    }
+
+    .login-form{
+        flex: 8;
+        padding: 0 10px;
+        .am-list-item .am-input-label.am-input-label-5 {
+            width: 38px;
+        }
+        .am-list-line::after{
+            height: 0px !important;
+        }
+        .am-list-body::before{
+            height: 0px;
+        }
+        .am-list-body::after{
+            height: 0px;
+        }
+        .am-list-item:not(:last-child) .am-list-line {
+            border: none;
+        }
+        .am-list-body{
+            position: static;
+            border: none;
+            
+            input{
+                padding: 12px 0;
+            }
+            
+        }
+
+
+        h2{
+            font-weight: normal;
+            color: #333;
+            font-size: 26px;
+            padding: 30px 10px;
+        }
+
+        div{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .login-type{
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        i{
+            font-size: 46px;
+        }
+    }
+
+    .login-footer{
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        span{
+            color: red;
+        }
+    }
+}

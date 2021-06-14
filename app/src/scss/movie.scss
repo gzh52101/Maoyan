@@ -1,0 +1,161 @@
+.movie-box{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+
+    .movie-header{
+        background: rgb(238,48,60);
+        display: flex;
+        align-items: center;
+
+        .city{
+            width: 20%;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            .arrow {
+                display: inline-block;
+                width: 0;
+                height: 0;
+                margin-left: 5px;
+                border: 3px solid #fff;
+                border-left: 3px solid transparent;
+                border-right: 3px solid transparent;
+                border-bottom: 3px solid transparent;
+            }
+        }
+
+        
+
+        .am-tabs{
+            flex: 1;
+            color: #ddd;
+            
+            .am-tabs-default-bar{
+                background-color: rgb(238,48,60) !important;
+                .am-tabs-default-bar-tab{
+                    font-size: 16px;
+
+                }
+                .am-tabs-default-bar-tab-active{
+                    color: #eee !important;
+                    font-weight: normal;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .movie-search{
+            width: 15%;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+        }
+    }
+    
+    .movie-main{
+        flex: 1;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        .hotMovie{
+
+            .banner{
+                img{
+                    border-radius: 0 !important;
+                }
+            }
+    
+            .movie-data{
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                background: rgb(245, 245, 245);
+                width: 90%;
+                margin: 10px auto;
+                border-radius: 5px;
+                font-size: 15px;
+            }
+        }
+
+        .onMovie{
+            background: #eee;
+
+            .preview{
+                background: #fff;
+                padding: 10px;
+
+                .preview-header{
+                    font-size: 18px;
+                }
+                .preview-cards{
+                    margin-top: 10px;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    display: flex;
+
+                    &::-webkit-scrollbar{
+                        display: none;
+                    }
+
+                    .cards{
+                        width: 50%;
+                        flex-shrink: 0;
+                        min-height: 100px;
+                        margin-right: 10px;
+                        position: relative;
+
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .title{
+                            width: 100%;
+                            padding: 5px 10px;
+                            color: #fff;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            background-image: linear-gradient(to bottom, rgba(150, 150, 150, 0.2), rgba(33, 33, 33, .9));
+                            p{
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                font-size: 16px;
+                            }
+                            .subTitle{
+                                font-size: 14px;
+                                padding-right: 30%;
+                            }
+                        }
+
+                        .myIcon-bofang {
+                            width: 20px;
+                            height: 20px;
+                            line-height: 20px;
+                            text-align: center;
+                            border-radius: 50%;
+                            background: rgba($color: #fff, $alpha: 0.8);
+                            position: absolute;
+                            right: 5px;
+                            bottom: 5px;
+            
+                            .icon-icon_play {
+                                color: #666;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        
+    }
+    
+}

@@ -1,0 +1,35 @@
+.index_box{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    >section{
+        height: 64px;
+        flex: none;
+    }
+    .ant-layout-header{
+        color: #ededed !important;
+        font-size: 20px !important;
+        background-color: rgba(34,38,46) !important;
+    }
+    
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .meau{
+        flex: 1;
+        >section{
+            width: 100%;
+            flex: none;
+            padding: 0 !important;
+            height: 100%;
+            .content{
+                flex: 1;
+                padding: 20px;
+            }
+
+        }
+    }
+}
