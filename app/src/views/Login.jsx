@@ -63,22 +63,21 @@ function Login() {
             password: password,
             vcode: vcode
         });
-        console.log(data);
-        // if (data.code === 200) {
-        //     Toast.success('登录成功', 2);
-        //     cleanPwd();
-        //     cleanTel();
-        //     setVCode('');
-        //     closeBtn();
-        //     dispatch(login(data.data));
-        // } else if (data.code === 400) {
-        //     Toast.offline('账号或密码错误', 2);
-        //     getVCode();
-        // } else if(data.code === 401){
-        //     Toast.offline('验证码错误或过期', 2);
-        //     setVCode('');
-        //     getVCode();
-        // }
+        if (data.code === 200) {
+            Toast.success('登录成功', 2);
+            cleanPwd();
+            cleanTel();
+            setVCode('');
+            closeBtn();
+            dispatch(login(data.data));
+        } else if (data.code === 400) {
+            Toast.offline('账号或密码错误', 2);
+            getVCode();
+        } else if(data.code === 401){
+            Toast.offline('验证码错误或过期', 2);
+            setVCode('');
+            getVCode();
+        }
 
     }, []);
 
