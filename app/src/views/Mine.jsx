@@ -5,7 +5,6 @@ import { openBox, logout } from '../store/actions/login';
 import '../scss/mine.scss'
 import { Toast, Switch, Button } from 'antd-mobile';
 import { apiUrl, baseUrl } from '../utils/request';
-
 const setBoxData = [
     {
         title: 'wifi环境自动播放',
@@ -166,7 +165,7 @@ function Mine() {
                         userInfo ? 
                         (mineTitle ? 
                             <div style={{display:'flex',justifyContent:'flex-start',alignItems:'center',paddingLeft:20}}>
-                                <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:'./img/headPortrait.jpg'} alt="" style={{width:32,height:32,borderRadius:'50%',marginRight:10}}/>
+                <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:require("../../public/img/headPortrait.jpg").default} alt="" style={{width:32,height:32,borderRadius:'50%',marginRight:10}}/>
                                 <span>{userInfo.nickname ? userInfo.nickname : '昵称'}</span>
                             </div>
                             :
@@ -190,7 +189,7 @@ function Mine() {
                         <div className="avator">
                             {
                                 userInfo ?
-                                <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:'./img/headPortrait.jpg'} alt="" />
+                                <img src={userInfo.avatar?`${baseUrl}/static/avatar/${userInfo.avatar}`:require("../../public/img/headPortrait.jpg").default} alt="" />
                                 :
                                 <img src="./img/headPortrait.jpg" alt="" />
                             }

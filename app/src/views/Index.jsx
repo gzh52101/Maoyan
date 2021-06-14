@@ -9,8 +9,18 @@ import Video from './Video';
 import Show from './Show';
 import Mine from './Mine';
 
+import HomeImg from "../../public/icon/nav/Home.png"
+import logoImg from "../../public/icon/nav/logo.png"
+import movieImg from "../../public/icon/nav/movie.png"
+import movie_activeImg from "../../public/icon/nav/movie_active.png"
+import videoImg from "../../public/icon/nav/video.png"
+import video_activeImg from "../../public/icon/nav/video_active.png"
+import showImg from "../../public/icon/nav/show.png"
+import show_activeImg from "../../public/icon/nav/show_active.png"
+import myImg from "../../public/icon/nav/my.png"
+import my_activeImg from "../../public/icon/nav/my_active.png"
+
 function Index(props) {
-    
     let nav = [
         {
             title: "首页",
@@ -18,12 +28,12 @@ function Index(props) {
             icon: <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/Home.png) center center /  21px 21px no-repeat'
+                background: `url(${HomeImg}) center center /  21px 21px no-repeat`
             }}></div>,
             selectedIcon:   <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/logo.png) center center /  21px 21px no-repeat'
+                background: `url(${logoImg}) center center /  21px 21px no-repeat`
             }}></div>
         },
         {
@@ -32,12 +42,12 @@ function Index(props) {
             icon: <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/movie.png) center center /  21px 21px no-repeat'
+                background: `url(${movieImg}) center center /  21px 21px no-repeat`
             }}></div>,
             selectedIcon:   <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/movie_active.png) center center /  21px 21px no-repeat'
+                background: `url(${movie_activeImg}) center center /  21px 21px no-repeat`
             }}></div>
         },
         {
@@ -46,12 +56,12 @@ function Index(props) {
             icon: <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/video.png) center center /  21px 21px no-repeat'
+                background: `url(${videoImg}) center center /  21px 21px no-repeat`
             }}></div>,
             selectedIcon:   <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/video_active.png) center center /  21px 21px no-repeat'
+                background: `url(${video_activeImg}) center center /  21px 21px no-repeat`
             }}></div>
         },
         {
@@ -60,12 +70,12 @@ function Index(props) {
             icon: <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/show.png) center center /  21px 21px no-repeat'
+                background: `url(${showImg}) center center /  21px 21px no-repeat`
             }}></div>,
             selectedIcon:   <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/show_active.png) center center /  21px 21px no-repeat'
+                background: `url(${show_activeImg}) center center /  21px 21px no-repeat`
             }}></div>
         },
         {
@@ -74,12 +84,12 @@ function Index(props) {
             icon: <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/my.png) center center /  21px 21px no-repeat'
+                background: `url(${myImg}) center center /  21px 21px no-repeat`
             }}></div>,
             selectedIcon:   <div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(./icon/nav/my_active.png) center center /  21px 21px no-repeat'
+                background: `url(${my_activeImg}) center center /  21px 21px no-repeat`
             }}></div>
         },
     ];

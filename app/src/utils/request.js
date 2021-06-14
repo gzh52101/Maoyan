@@ -1,5 +1,6 @@
 // export const baseUrl = process.env.NODE_ENV==='production' ? 'http://10.3.136.249:5555' : 'http://10.3.136.249:5555';
-export const baseUrl = process.env.NODE_ENV === 'production' ? 'http://10.3.136.249:5555' : 'http://159.75.52.223:5555';
+// export const baseUrl = process.env.NODE_ENV === 'production' ? 'http://10.3.136.249:5555' : 'http://159.75.52.223:5555';
+export const baseUrl ='http://159.75.52.223:5555'
 export const apiUrl = baseUrl + '/api'
 
 function request(url, data = {}, config = {}) {

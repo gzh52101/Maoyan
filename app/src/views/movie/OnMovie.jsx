@@ -3,26 +3,34 @@ import request from '../../utils/request';
 import MovieCard from '../../components/MovieCard';
 import RecCards from '../../components/RecCards';
 import '../../scss/movie.scss';
-
+import banner1 from '../../../public/img/banner1.png'
 function Movie(props) {
 
+    
     const [onMovieData, setonMovieData] = useState([]);
 
     // 初始化调用
     useEffect(function () {
         getData();
+
     }, []);
 
     useEffect(() => {
         return () => {
             setonMovieData(null)
+            
         }
     },[])
 
 
     // 获取影片
     const getData = useCallback(async () => {
-        const { data } = await request.get('/movie', { page: 1, size: 50, isOn: true });
+        console.log("===",banner1);
+        console.log("===",props);
+        const { data } = await request.get('/movie', { page: 1, size: 50, isOn: true }
+       
+        );
+
         setonMovieData(data.data);
     }, []);
 
@@ -37,7 +45,7 @@ function Movie(props) {
                     </div>
                     <div className="preview-cards">
                         <div className="cards">
-                            <img src="./img/banner1.png" alt="" />
+                            <img src={require("../../../public/img/banner1.png").default} alt="" />
                             <div className="title">
                                 <p>新大头儿子和小头爸爸</p>
                                 <p className="subTitle">《新大头儿子和小头爸爸》</p>
@@ -47,7 +55,7 @@ function Movie(props) {
                             </div>
                         </div>
                         <div className="cards">
-                            <img src="./img/banner2.png" alt="" />
+                            <img src={require("../../../public/img/banner2.png").default} alt="" />
                             <div className="title">
                                 <p>无人生还：逃跑计划</p>
                                 <p className="subTitle">《无人生还》</p>
@@ -57,7 +65,7 @@ function Movie(props) {
                             </div>
                         </div>
                         <div className="cards">
-                            <img src="./img/banner3.png" alt="" />
+                            <img src={require("../../../public/img/banner3.png").default} alt="" />
                             <div className="title">
                                 <p>革命者</p>
                                 <p className="subTitle">电影《革命者》</p>
@@ -67,7 +75,7 @@ function Movie(props) {
                             </div>
                         </div>
                         <div className="cards">
-                            <img src="./img/banner4.png" alt="" />
+                            <img src={require("../../../public/img/banner4.png").default} alt="" />
                             <div className="title">
                                 <p>两只狗的生活意见</p>
                                 <p className="subTitle">戏剧《两只狗的生活意见》</p>
