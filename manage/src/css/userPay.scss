@@ -1,0 +1,10 @@
+.ant-form-item{
+display: flex;
+flex-direction: row !important;
+align-items: center;
+>div:nth-child(1){
+    text-align: right;
+    padding: 0;
+    padding-right: 20px;
+}
+}
